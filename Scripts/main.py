@@ -10,6 +10,9 @@ from time import perf_counter
 print("Imports completed.", flush=True)
 
 
+PROJECT_DIR = ""  # Set this to the directory containing data/.
+
+
 def main():
 
     #MSG
@@ -18,7 +21,9 @@ def main():
     number_of_tests = 10000
 
     # Set the data,results paths and create if not exist the results dir
-    project_dir = Path("/home/s/skouandr/Neuron_Prjs/Project_1/nn_v1")
+    if not PROJECT_DIR.strip():
+        raise SystemExit("Set PROJECT_DIR in Scripts/main.py before running.")
+    project_dir = Path(PROJECT_DIR).expanduser()
     data_dir = project_dir / "data"
     results_dir = project_dir / "results"
     results_dir.mkdir(parents=True, exist_ok=True)

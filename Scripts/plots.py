@@ -14,7 +14,8 @@ plt.rcParams.update({
 })
 
 #Set results directory path to read the csv files from
-RESULTS_DIR = Path("/home/s/skouandr/Neuron_Prjs/Project_1/nn_v1/results")
+RESULTS_DIRECTORY = ""  # Set this to the results/ directory written by main.py.
+RESULTS_DIR = Path(RESULTS_DIRECTORY).expanduser()
 #Set plots directory paths
 PLOTS_DIR = RESULTS_DIR / "plots"
 
@@ -159,6 +160,8 @@ def plot_validation_history():
 
 
 def main():
+    if not RESULTS_DIRECTORY.strip():
+        raise SystemExit("Set RESULTS_DIRECTORY in Scripts/plots.py before running.")
     #Make plots directory
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
